@@ -9,8 +9,8 @@ from inicio.forms import CrearZapatillaFormulario, BuscarZapatillaFormulario
 def inicio (request):
      return render (request, "index.html")
 
-def zapatilla (request):
-    return render (request, "zapatilla.html")
+def acerca_de_mi (request):
+    return render (request, "acerca_de_mi.html")
 
 def crear_zapatilla (request):
      
