@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_head %}crear zapatilla{% endblock title_head %}
+{% block titulo %}pagina crear zapatilla{% endblock titulo %}
+{% block main %}
+
+<form action={% url "crear_zapatilla" %} method="POST">
+{% csrf_token %}
+{{form}}
+<button>enviar</button>
+</form>
+
+{% endblock main %}

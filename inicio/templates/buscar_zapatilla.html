@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_head %}buscar zapatilla{% endblock title_head %}
+{% block titulo %}pagina buscar zapatilla{% endblock titulo %}
+{% block main %}
+
+<form action={% url "buscar_zapatilla" %} method="GET">
+    {{form}}
+    <button>enviar</button>
+</form>
+{% if Zapatillas %}
+<ul>
+    {% for zapatilla in Zapatillas %}
+    <li>{{zapatilla}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay zapatillas creadas con esas caracteristicas</p>
+{% endif %}
+
+{% endblock main %}
