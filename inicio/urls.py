@@ -6,4 +6,5 @@ urlpatterns = [
      path("acerca-de-mi/", acerca_de_mi, name="acerca_de_mi"),
      path("buscar-zapatilla/", buscar_zapatilla, name="buscar_zapatilla"),
      path("crear-zapatilla/", crear_zapatilla, name="crear_zapatilla"),
+   
 ]

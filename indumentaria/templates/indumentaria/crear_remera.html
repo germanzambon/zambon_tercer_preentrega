@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title_head %}crear remera{% endblock title_head %}
+{% block titulo %}pagina crear remera{% endblock titulo %}
+{% block main %}
+
+<form action={% url "indumentaria:crear_remera" %} method="POST">
+{% csrf_token %}
+{{form}}
+<button>enviar</button>
+</form>
+
+{% endblock main %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_head %}ver remera{% endblock title_head %}
+{% block titulo %}pagina ver remera{% endblock titulo %}
+{% block main %}
+
+<ul>
+    <li>id:{{remera.id}}</li>
+    <li>color:{{remera.color}}</li>
+    <li>talle:{{remera.talle}}</li>
+</ul>
+{% endblock main %}

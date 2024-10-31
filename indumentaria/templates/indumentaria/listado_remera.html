@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title_head %}listado remeras{% endblock title_head %}
+{% block titulo %}pagina listado remeras{% endblock titulo %}
+{% block main %}
+
+<a  href={% url "indumentaria:crear_remera" %}>CREAR REMERA</a>
+
+{% if remera %}
+<ul>
+    {% for remera in remera %}
+    <li>{{remera}}
+        
+        <a  href={% url "indumentaria:ver_remera" remera.id %}>VER MAS</a>
+        <a  href={% url "indumentaria:editar_remera" remera.id %}>EDITAR</a>
+        <a  href={% url "indumentaria:eliminar_remera" remera.id %}>ELIMINAR</a>
+
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay remeras creadas con esas caracteristicas</p>
+{% endif %}
+
+{% endblock main %}

@@ -4,7 +4,8 @@ from datetime import datetime
 from django.shortcuts import render, redirect
 from inicio.models import zapatillas
 from inicio.forms import CrearZapatillaFormulario, BuscarZapatillaFormulario
-
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 def inicio (request):
      return render (request, "index.html")
@@ -37,5 +38,6 @@ def buscar_zapatilla (request):
      else:
           Zapatillas=zapatillas.objects.all()
      return render (request, "buscar_zapatilla.html",{"Zapatillas":Zapatillas, "form":formulario})
+
 
 

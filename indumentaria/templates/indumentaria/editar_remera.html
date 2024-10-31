@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title_head %}editar remera{% endblock title_head %}
+{% block titulo %}pagina editar remera{% endblock titulo %}
+{% block main %}
+
+<form action={% url "indumentaria:editar_remera" remera.id %} method="POST">
+{% csrf_token %}
+{{form}}
+<button>EDITAR</button>
+</form>
+
+{% endblock main %}
