@@ -5,9 +5,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from indumentaria.models import remera
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-class Crear_Remera(CreateView):
+class Crear_Remera(LoginRequiredMixin, CreateView):
     model = remera
     template_name = "indumentaria/crear_remera.html"
     success_url= reverse_lazy("indumentaria:listado_remera")
@@ -22,13 +22,13 @@ class Ver_Remera(DetailView):
     model = remera
     template_name = "indumentaria/ver_remera.html"
     
-class Editar_Remera(UpdateView):
+class Editar_Remera(LoginRequiredMixin, UpdateView):
     model = remera
     template_name = "indumentaria/editar_remera.html"
     success_url= reverse_lazy("indumentaria:listado_remera")
     fields= ("color", "talle")
     
-class Eliminar_Remera(DeleteView):
+class Eliminar_Remera(LoginRequiredMixin, DeleteView):
     model = remera
     template_name = "indumentaria/eliminar_remera.html"
     success_url= reverse_lazy("indumentaria:listado_remera")

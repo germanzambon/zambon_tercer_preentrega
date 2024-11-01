@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title_head  %}
+iniciar sesion
+{% endblock title_head %}
+
+{% block titulo %}
+iniciar sesion
+{% endblock titulo %}
+
+{% block main %}
+
+<form action="{% url "usuarios:login" %} "method="POST">
+ {% csrf_token %}
+    {{form}}
+    <input type="submit" value="inciar Sesion">
+
+</form>
+
+
+{% endblock main %}

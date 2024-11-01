@@ -6,6 +6,7 @@ from inicio.models import zapatillas
 from inicio.forms import CrearZapatillaFormulario, BuscarZapatillaFormulario
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 def inicio (request):
      return render (request, "index.html")
@@ -13,7 +14,7 @@ def inicio (request):
 def acerca_de_mi (request):
     return render (request, "acerca_de_mi.html")
 
-def crear_zapatilla (request):
+def crear_zapatilla ( request):
      
      formulario=CrearZapatillaFormulario()
      
