@@ -14,7 +14,8 @@ def inicio (request):
 def acerca_de_mi (request):
     return render (request, "acerca_de_mi.html")
 
-def crear_zapatilla ( request):
+@login_required  
+def crear_zapatilla (request):
      
      formulario=CrearZapatillaFormulario()
      
@@ -29,8 +30,8 @@ def crear_zapatilla ( request):
      
      return render(request,"crear_zapatilla.html",{"form":formulario})
      
-     
-def buscar_zapatilla (request):
+@login_required   
+def buscar_zapatilla ( request,):
      formulario= BuscarZapatillaFormulario(request.GET)
      if formulario.is_valid():
         marca= formulario.cleaned_data.get("marca")

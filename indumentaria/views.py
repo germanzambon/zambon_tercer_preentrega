@@ -13,12 +13,12 @@ class Crear_Remera(LoginRequiredMixin, CreateView):
     success_url= reverse_lazy("indumentaria:listado_remera")
     fields= ("color", "talle")
 
-class Listado_Remera(ListView):
+class Listado_Remera(LoginRequiredMixin, ListView):
     model= remera
     template_name= "indumentaria/listado_remera.html"
     context_object_name= "remera"
     
-class Ver_Remera(DetailView):
+class Ver_Remera(LoginRequiredMixin, DetailView):
     model = remera
     template_name = "indumentaria/ver_remera.html"
     

@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login as django_login
-from usuarios.forms import formulario_creacion_usuario
+from usuarios.forms import formulario_creacion_usuario, FormulacioEdicionPerfil
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from usuarios.models import DatosExtras
 
 def login(request):
 
@@ -30,3 +35,26 @@ def registrarse (request):
             formulario.save()
             return redirect("usuarios:login")
     return render(request,"usuarios/registrarse.html", {"form":formulario})
+
+@login_required
+def editar_perfil(request):
+    datos_extras, created = DatosExtras.objects.get_or_create(user=request.user)
+    formulario=FormulacioEdicionPerfil(instance=request.user, initial={"avatar":datos_extras.avatar})
+    
+    if request.method == "POST":
+        formulario=FormulacioEdicionPerfil(request.POST, request.FILES, instance=request.user)
+        if formulario.is_valid():
+            
+            new_avatar=formulario.cleaned_data["avatar"]
+            datos_extras.avatar=new_avatar if new_avatar else datos_extras.avatar
+            datos_extras.save()
+            
+            formulario.save()
+            
+            return redirect("inicio")
+    
+    return render(request, "usuarios/editar_perfil.html",{"form":formulario})
+
+class CambiarPassword(LoginRequiredMixin, PasswordChangeView):
+    template_name= "usuarios/cambiar_password.html"
+    success_url= reverse_lazy("usuarios:editar_perfil")
